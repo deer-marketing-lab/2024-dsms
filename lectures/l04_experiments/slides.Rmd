@@ -1,0 +1,750 @@
+---
+title: "Field Experiments"
+subtitle: "Digital and Social Media Strategies"
+author: "Lachlan Deer"
+institute: "Tilburg University"
+date: "Updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, metropolis, metropolis-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: font160
+
+# Learning Goals for this Week
+
+* Define the term "field" experiment 
+* Identify and explain the key features of field experiments
+* Discuss how field experiments allow marketers to make causal claims about their marketing intervention 
+* Compute descriptive statistics and visualize data from a field experiment 
+* Use statistical hypothesis testing to analyze data from a field experiment to answer a strategic question of relevance to managers
+
+---
+class: inverse, center, middle
+
+# Preliminaries
+
+---
+class: font160
+# Where Are We Now? 
+
+```{r, echo = FALSE, fig.align = "center", out.width="25%"}
+url <- "figs/pngtree-pile-of-cartoonish-cute-doodle-theme-books-png-image_6871556.png"
+knitr::include_graphics(url)
+```
+
+Course Themes:
+
+1. **Measuring Advertising Effects**
+  * `r icons:::icon_style(icons::fontawesome("check", style = "solid"), scale = 1)` Attribution Models
+  * `r icons:::icon_style(icons::fontawesome("check", style = "solid"), scale = 1)` Media Mix Models
+  * `r icons:::icon_style(icons::fontawesome("bullseye", style = "solid"), scale = 1)` Incrementality Experiments
+2. User Generated Content & Social Media
+
+---
+class: font160
+# Our learning journey... 
+
+*Previously*: Marketing Attribution Rules & Media Mix Modelling
+
+* Relies on *observational* data 
+
+**Today**: **Intro to Field Experiments** 
+
+* Conceptual: What are they? Why we run them? How to analyse the data?
+* Application: Search Ranking Experiment at Expedia
+
+*Next Week*: Experiments in Online Display Advertising & Search Engine Marketing
+
+---
+class: inverse, center, middle
+
+# Hypothetical Scenario: <br> The Burger Promotion Problem
+
+---
+class: font150
+# The Burger Promotion Problem: Set up 
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "https://cdn.vox-cdn.com/thumbor/4mAGUkdlOUBL_INj2X2uZ53BR8U=/0x0:1100x825/1200x800/filters:focal(0x0:1100x825)/cdn.vox-cdn.com/uploads/chorus_image/image/46157824/american-burgers.0.0.jpg"
+knitr::include_graphics(url)
+```
+
+* New burger to be **introduced to all** stores 
+* **Three** different **promotion strategies** used (promo 1, 2 or 3)
+* **Managers care about sales**
+* No access to previous sales data 
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**Which promotion strategy is the most effective?**
+]
+
+---
+class: font150
+# The Burger Promotion Problem
+
+Access to information about store characteristics:
+
+* Market size: Small / Medium / Large 
+* Age of store: in years since opening 
+
+You can track: 
+* Weekly sales (in hundreds of thousands of dollars) per store
+* For up to 4 weeks 
+
+**Discussion Questions**:
+
+**1. How would you allocate promotion strategies to stores?**
+
+**2. How would you evaluate the effectiveness of each promotion strategy?**
+
+.font70[(Two blank slides to sketch out an answer)]
+
+---
+class: clear 
+
+---
+class: clear 
+
+---
+class: font150
+# Potential Issues Encountered
+
+<!---
+
+* **Lurking Variables**: variable that is not included as an explanatory or response variable in the analysis but can affect the interpretation of relationships between variables.
+  - Also called a confounding variable
+
+<br>
+
+* **Sample Selection Bias**:  Failing to ensure that the sample obtained is representative of the population intended to be analyzed
+
+<br>
+
+* **No Control Group**: Effectiveness compared to no intervention (eg. promotional strategy) 
+
+--->
+
+---
+class: font150
+# Potential Issues Encountered
+
+
+* **Lurking Variables**: variable that is not included as an explanatory or response variable in the analysis but can affect the interpretation of relationships between variables.
+  - Also called a confounding variable
+
+<br>
+
+* **Sample Selection Bias**:  Failing to ensure that the sample obtained is representative of the population intended to be analyzed
+
+<br>
+
+* **No Control Group**: Effectiveness compared to no intervention (eg. promotional strategy) 
+
+**Remark:** These problems also plagued our interpretations of attribution models and media mix models
+
+---
+class: font150
+# Gold Standard Data Driven Marketing
+
+| "Traditional" Data Driven Marketing | Gold Standard Data Driven Marketing        |
+|-------------------------------------|--------------------------------------------|
+| Anchor on data that is available    | Anchor on a decision that needs to be made |
+| Finds a purpose for data            | Finds data for a purpose                   |
+| Starts from what is known           | Start from what is unknown                 |
+| Empowers data analysts/scientists   | Empowers decision making                   |
+
+
+adapted from De Lange and Putoni (2020)
+
+---
+class: inverse, center, middle
+# Field Experiments 101 
+
+---
+class: font150
+# Causal Data Driven Marketing
+
+<br>
+
+> What is the impact of an marketing intervention (X) on an outcome (Y)
+
+<br>
+
+1. Hard to evaluate
+2. Need to compute counterfactuals
+3. Challenge: same person cannot both get treatment and not get treatment
+
+---
+class: font150
+# Field Experiments 
+
+> Field experimentation represents the conjunction of two methodological strategies: **experimentation** and **fieldwork**.
+
+**Core idea of Experiments**:
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/random_allocation.png"
+knitr::include_graphics(url)
+```
+
+.center[along with the observation/measurement of an outcome variable]
+
+Remark: Experiments are often also called A/B tests or A/B/n tests in marketing and data science.
+
+---
+class: font150
+# Field Experiments 
+
+<br>
+Key features of a field experiment: 
+
+<br>
+
+1. Authenticity of treatments 
+2. Representativeness of participants 
+3. Real world context 
+4. Relevant outcome measures
+
+<br>
+
+In most field experiments, participants are not even conscious that they are taking part in an experiment
+
+---
+class: font150
+# "True" Experiments 
+
+<br>
+
+Three identifiable aspects:
+
+<br>
+
+1. Comparison of outcomes between treatment and control 
+2. Assignment of subjects is to groups is done through a randomization device
+3. Manipulation of treatment is under control of a researcher / analyst
+
+
+.font70[Dunning, T. (2012). Natural experiments in the social sciences: A design-based approach. Cambridge: Cambridge University Press.]
+
+When done correctly: **isolates the incremental effect** of the treatment on a outcome variable
+
+---
+class: font130
+# Eight Steps of an Experiment
+
+1. Write down a testable hypothesis.
+  * Generally advocate a "no change" hypothesis
+2. Decide on two or more treatments that might impact the outcome variable(s) of interest.
+  * Generally, include a control treatment where nothing is changed to use as a baseline
+3. Compute how many subjects to include in the experiment**.
+3. Randomly divide subjects (people/stores) into groups.
+  * Also need to decide on the sample size for each group.
+4. Expose each group to a different treatment.
+5. Measure the response in terms of an outcome variable(s) for subjects in each group.
+  * Outcomes must be chosen in advance!
+6. Compare responses via a (correct) statistical test.
+7. Conclude whether to reject or "fail to reject" your hypothesis based on (7).
+
+
+.font80[Remark: Good experiments have a hypothesis that answers a strategic question for a business]
+
+---
+class: font150
+# The Burger Promotion Problem Redux 
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "https://cdn.vox-cdn.com/thumbor/4mAGUkdlOUBL_INj2X2uZ53BR8U=/0x0:1100x825/1200x800/filters:focal(0x0:1100x825)/cdn.vox-cdn.com/uploads/chorus_image/image/46157824/american-burgers.0.0.jpg"
+knitr::include_graphics(url)
+```
+
+<br>
+
+* Go back to your proposed solution to measure the effectiveness of the three promotional strategies
+* Update your plan using what we have discussed.
+
+---
+class: clear
+
+---
+class: font150
+# Causal Data Driven Marketing Redux
+
+<br>
+
+> What is the impact of an marketing intervention (X) on an outcome (Y)
+
+<br>
+
+1. Hard to evaluate
+2. Need to compute counterfactuals
+3. Challenge: same person cannot both get treatment and not get treatment
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How have field experiments helped us do causal data driven marketing?**
+]
+
+---
+class: inverse, center, middle
+
+# Analyzing Field Experiment Data
+
+---
+class: font150
+# The Expedia Hotel Ranking Experiment
+
+```{r, echo = FALSE, fig.align = "center", out.width="25%"}
+url <- "figs/expedia.png"
+knitr::include_graphics(url)
+```
+
+* Expedia ran an experiment where they compare consumer behaviour from the existing algorithm that ranks hotels for a given search to behaviour when the hotels were randomly ranked and displayed
+
+* Expedia has provided a dataset that includes shopping and purchase data as well as information on price competitiveness. 
+
+* The data are organised around a set of “search result impressions”,
+  * i.e. the ordered list of hotels that a user sees after they search for a hotel on the Expedia website. 
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**Does their ranking algorithm outperform random ordering?**
+]
+
+---
+# Hotel Search & Rankings on Expedia
+
+```{r, echo = FALSE, fig.align = "center", out.width="75%"}
+url <- "https://dpogroup.com/wp-content/uploads/2018/12/expedia-hotel-search.jpg"
+knitr::include_graphics(url)
+```
+
+---
+# The Data
+
+```{r, echo = FALSE, message = FALSE}
+library(readr)
+library(lubridate)
+library(dplyr)
+
+search_data <- read_csv("data/expedia_experiment_simple.csv")
+  
+search_data %>%
+  head(15)
+```
+
+---
+class: font160
+# Steps to Analyze Experimental Data 
+
+<br>
+
+
+1. Be explicit on the business question you are trying to answer 
+2. Build an understanding of the data structure 
+2. Compute some descriptive statistics 
+3. Visualize the Data
+4. Run (the correct) statistical test
+5. Use the results to inform decision making
+
+---
+class: font160
+# The Business Question(s)
+
+How to go from:
+
+.center[
+**Does their ranking algorithm outperform random ordering?**
+]
+
+to something we can measure ... 
+
+
+
+
+---
+class: font160
+# Descriptive Statistics
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**What descriptive statistics do you want to know?**
+]
+
+<!---
+Things you might want to know: 
+
+* How many observations in total? 
+* How observations many per treatment?
+* What is the mean/median number of sales per store in each treatment group?
+* What is the standard deviation of the number of sales per store in each treatment group?
+* Do observable characteristics of stores differ across treatments?
+
+There
+ are definitely more ...
+---> 
+
+---
+class: font160
+# Descriptive Statistics
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**What descriptive statistics do you want to know?**
+]
+
+Things you might want to know: 
+
+* How many observations in total? 
+* How many search sessions in total?
+* How many hotels are in the data? Across how many countries?
+* How many search sessions in the treatment and control groups?
+
+There
+ are definitely more ...
+
+
+---
+class: font120
+# Descriptive Statistics
+
+```{r, echo = TRUE, message = FALSE}
+
+# (i)
+nrow(search_data)
+# (ii)
+search_data %>% select(srch_id) %>% n_distinct()
+# (iii)
+search_data %>% select(prop_id) %>% n_distinct()
+# (iv)
+search_data %>% select(prop_country_id) %>% n_distinct()
+```
+
+---
+class: font150
+# Descriptive Statistics By Treatment
+
+
+```{r, echo = FALSE}
+search_data %>%
+    group_by(srch_id, treatment) %>%
+    count() %>%
+    group_by(treatment) %>%
+    count()
+```
+
+---
+class: font160
+# Differences in Booking Proportions
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How to best visualize differences in the proportion of bookings between treatments?**
+]
+
+<!---
+Alternatives include:
+
+* Histogram / bar plot
+* Scatterplot 
+* Boxplot
+--->
+
+---
+# Differences in Booking Proportions
+
+
+```{r, message = FALSE, echo = FALSE, fig.align = 'center'}
+sessions_data <-
+    search_data %>%
+    group_by(srch_id) %>%
+    summarise(
+        session_date = max(date(date_time)),
+        treatment = as.factor(max(treatment)),
+        booking_made = as.factor(max(booked)),
+        booking_made_1 = max(booked),
+        hotels_viewed = sum(clicked),
+        has_clicked   = as.factor(max(clicked))#,
+        #total_spent = max(gross_bookings_usd)
+    ) %>%
+    ungroup() %>%
+    mutate(more_than_two_clicks = 
+               if_else(hotels_viewed > 2, TRUE, FALSE)
+    )
+
+# Bookings
+library(ggplot2)
+sessions_data %>%
+    ggplot(aes(fill=as.factor(booking_made), x=as.factor(treatment))) + 
+    geom_bar(position="fill") +
+    ylab("Proportion") +
+    xlab("Treatment Group") + 
+    scale_fill_manual(name = "Booking Made",
+                      labels = c("True",
+                                 "False"),
+                      values = c("1" ="#E69F00", "0" ="#999999")) +
+    theme_bw() +
+    theme(legend.position = "bottom") + 
+    scale_x_discrete(labels=c("0" = "Control Group", "1" = "Randomized Rankings"))
+```
+
+
+---
+class: font160
+# A Statistical Test
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+ **What is the "right" statistical analysis to run?**
+]
+
+1. Two-sample tests of means
+  - Limit to binary comparisons
+2. Two-sample test of proportions
+  - We don't have proportions in our data
+3. ANOVA
+4. Linear Regression
+
+---
+class: font160
+# Comparing Proportions
+
+Form null and alternative hypotheses:
+
+* H0: $p_0 - p_1 = 0$
+* HA: $p_0 - p_1 \neq 0$
+
+Set a level of significance: $\alpha = 0.05$
+
+Test Statistic: 
+
+$$
+z = \frac{\hat{p}_1 - \hat{p}_0}{\sqrt{\frac{\bar{p}\bar{q}}{n_1} + \frac{\bar{p}\bar{q}}{n_2}  } } 
+$$
+
+
+---
+class: font160
+# Comparing Proportions
+
+<br>
+
+```{r, echo = FALSE}
+library(infer)
+
+prop_test(sessions_data, booking_made ~ treatment, alternative = "two.sided")
+
+```
+
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How to interpret the output?**
+
+
+---
+# Intermezzo: Type I and Type II errors
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="65%"}
+url <- "https://miro.medium.com/max/852/1*iM4wTvvEgVmFVqbaip2--Q.png"
+knitr::include_graphics(url)
+```
+
+In experiments at large tech companies usually $\beta = 0.8$
+
+
+---
+class: font140
+# Comparing Means
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+ **Is click behaviour different between treatments?**
+]
+
+Click behaviour $\rightarrow$ number of clicks 
+
+* .font70[Other ideas likely valid too]
+
+Form null and alternative hypotheses:
+
+* H0: $\mu_0 - \mu_1 = 0$
+* HA: $\mu_0 - \mu_1 \neq 0$
+
+Set a level of significance: $\alpha = 0.05$
+
+Test Statistic (assuming unequal variances): 
+
+$$\text{t-stat} = \frac{\hat{\mu}_1 - \hat{\mu}_2}{\sqrt{\left( \frac{\hat{\sigma_1}^2}{n_1} + \frac{\hat{\sigma_2}^2}{n_2} \right)}}$$
+
+---
+class: font150
+# Comparing Means 
+
+```{r, echo = FALSE}
+# what are the means?
+sessions_data %>%
+    group_by(treatment) %>%
+    summarise(hotels_viewed = mean(hotels_viewed))
+
+#Now test
+t_test(sessions_data, hotels_viewed ~ treatment, alternative = "two.sided")
+
+```
+
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How to interpret the output?**
+
+---
+# What have we discovered so far?
+
+---
+class: font120
+# Regression Equivalents
+
+$$\text{Booked}_i = \beta_0 + \beta_1 \text{Expedia Algorithm} + \varepsilon_i$$
+
+```{r, echo = FALSE}
+booking_reg <- lm(as.numeric(booking_made_1) ~ treatment, 
+                  data = sessions_data)
+summary(booking_reg)
+```
+
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How to interpret the output?**
+
+---
+class: font120
+# Regression Equivalents
+
+$$\text{No. Hotels Viewed}_i = \beta_0 + \beta_1 \text{Expedia Algorithm} + \varepsilon_i$$
+
+```{r, echo = FALSE}
+viewed_reg <- lm(hotels_viewed ~ treatment, 
+                  data = sessions_data)
+summary(viewed_reg)
+```
+
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+**How to interpret the output?**
+
+---
+class: font140
+# Causal Interpretations and Experiments 
+
+**Regression estimates from analysis of experiments have causal interpretations**
+
+Why? 
+
+* Counterfactual outcomes - compare to an alternative promotion
+* "As good as random" assignment to treatments - lurking variables won't trouble us 
+* No sample selection bias ... analyst picked the sample to match the group they care about
+  
+Regression estimates from experiments allow us to:
+
+* Test whether treatments have effects 
+  * Same as ANOVA or a t-test
+* Estimate a magnitude of the effect sizes (and standard errors)
+  * Which our t-test and ANOVA didn't
+
+---
+class: font160
+# What could be the mechanism?
+
+.center[
+`r icons:::icon_style(icons::fontawesome("question", style = "solid"), scale = 1)`
+ **Why does Expedia's search ranking do better?**
+]
+
+---
+class: font160
+# What could be the mechanism?
+
+Focus on sessions with a booking. How do the characteristics differ?
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/booking_characteristics.png"
+knitr::include_graphics(url)
+```
+
+Takeaways:
+
+
+
+---
+class: inverse, center, middle
+
+# Recap
+
+---
+class: font160
+# Recap
+
+* Well designed experiments deliver causal effects of marketing interventions
+  - Eliminating "lurking variables" and sample selection bias
+
+* 8 steps in the experimental method
+* Analyzing data from an experiment involves descriptive statistics, data visualization and (statistical) hypothesis tests
+
+
+---
+class: font160
+# Tips on Presenting Findings
+
+1. Know your audience 
+2. Summarize the experiment 
+3. Provide context
+4. Lead with a recommendation
+5. Support with analysis
+6. Use graphs 
+7. Check the (graph) labels!
+
+---
+# Most Experiments Fail
+
+**Main Point of an experiment**:  test some idea 
+
+* *not* proven something 
+
+$\implies$ most experiments "fail"
+
+* i.e. change does not lead to an improvement
+
+**This is a good thing**
+
+* Bad ideas fail quickly
+* Investment is typically small ...
+* ... as are the sample sizes
+
+But failed experiments are not normally what one sees ...
+
+* In publications, or 
+* When talking to a firm 
+
+
+---
+# License & Citation
+
+Suggested Citation:
+
+```{r, engine='out', eval = FALSE}
+@misc{deerdsms2024,
+      title={"Digital and Social Media Strategies: Field Experiments"},
+      author={Lachlan Deer},
+      year={2024},
+      url = "https://github.com/deer-marketing-lab/dsms-lecture-experiments"
+}
+```
+
+<p style="text-align:center;"><img src="https://www.tilburguniversity.edu/sites/default/files/styles/large_width/public/image/Logo%20OSCT.png?itok=PqU9mw_l" alt="Logo" width = "200"></p>
+
+This course adheres to the principles of the Open Science Community of Tilburg University. 
+This initiative advocates for transparency and accessibility in research and teaching to all levels of society and thus creating more accountability and impact.
+
+<p style="text-align:center;"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Logo" width = "100"></p>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
