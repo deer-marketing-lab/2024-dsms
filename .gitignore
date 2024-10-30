@@ -1,0 +1,14 @@
+.Rproj.user
+.Rhistory
+.Rdata
+*.Rproj
+.httr-oauth
+.DS_Store
+.snakemake
+logs
+libs
+slides_files
+*.html
+*.pdf
+slides_cache*
+expedia_example/*
