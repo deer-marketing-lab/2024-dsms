@@ -1,0 +1,26 @@
+{
+    "id": "828671D1",
+    "path": "~/teaching/tilburg/dsms-base/labs/lab01-attribution/attribution_analysis.R",
+    "project_path": "attribution_analysis.R",
+    "type": "r_source",
+    "hash": "2748635712",
+    "contents": "",
+    "dirty": false,
+    "created": 1722628724457.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "144,18",
+        "scrollLine": "140"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1724773657,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1724773657674,
+    "read_only": false,
+    "read_only_alternatives": []
+}

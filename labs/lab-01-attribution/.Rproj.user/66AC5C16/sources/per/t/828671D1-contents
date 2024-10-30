@@ -1,0 +1,170 @@
+# attribution_analysis.R
+# 
+# What this file does:
+#  - Script to work on solutions to Lab 1: Attribution Modelling
+#
+# Note: Data Loading step on Line 37 
+#       assumes you are working in an R Studio
+#       project with the folder "lab_01_intro_r"
+#       as the base directory. Instructors will
+#       show you how to set this up during the 
+#       Computer Lab
+#
+#       You need to install additional packages to 
+#       your system to complete this tutorial. You can
+#       install these by running the following lines of code
+#       (uncomment, i.e. remove the '#'). 
+#       
+#        You only need to complete this installation step once.
+#  
+#        Uncomment the lines below: 
+# 
+# to_install <- c("readr", "dplyr", "lubridate", 
+#                 "ggplot2", "ChannelAttribution",
+#                 "GameTheoryAllocation")    
+#
+# install.packages(to_install)
+
+library(readr)                # loading data
+library(dplyr)                # manipulating data
+library(ggplot2)              # plotting figures
+library(ChannelAttribution)   # attribution modelling package
+library(GameTheoryAllocation) # for shapley values
+
+# --- Task 2: LOAD &  UNDERSTANDING YOUR DATA --- #
+
+# A
+# Solution:
+df <- read_csv("data/attribution_data_student.csv")
+
+# B
+# Solution:
+df %>%
+    nrow()
+
+# C
+# HINT: ncol() counts the number of columns in a dataset
+df %>%
+    YOUR_CODE()
+
+# D
+# HINT: Replace YOUR_VARIABLE with the name of the column
+# that stores user identifiers
+df %>%
+    select(YOUR_VARIABLE) %>%
+    n_distinct()
+
+# E
+# HINT:
+# - to answer "how many" adapt the code from the tasks above 
+#   by changing the variable in the select() statement
+# - to list the values, replace n_distinct() with distinct()
+df %>%
+    select(YOUR_VARIABLE) %>%
+    YOUR_CODE()
+
+df %>%
+    select(YOUR_VARIABLE) %>%
+    YOUR_CODE()
+
+# F
+# HINT: 
+# - adapt code from the tasks above
+df %>%
+    select(YOUR_VARIABLE) %>%
+    YOUR_CODE()
+
+# --- Task 3: Selecting Data for Analysis --- #
+# A.
+# HINT:
+# - Adapt your answer from the tasks above
+conversions <-
+    df %>%
+    filter(YOUR_VARIABLE == 1)
+
+# B.
+conversions %>%
+    YOUR_CODE(YOUR_VARIABLE) %>%
+    YOUR_CODE()
+
+# --- Task 4: Last Touch Attribution --- #
+# A
+# HINT:
+# - Replace YOUR_VARIABLE with variable name 
+#   that stores what type of ad was seen.
+conversions %>%
+    group_by(YOUR_VARIABLE) %>%
+    count()
+
+# B
+# HINT:
+# - Replace YOUR_VARIABLE with the correct
+#   variable names
+conversions %>%
+    group_by(YOUR_VARIABLE) %>%
+    summarise(value = sum(YOUR_VARIABLE))
+
+# C
+# Hint:
+# - Replace YOUR_VARIABLE with the variable that contain
+#   date information
+daily_conversions_lta <-
+    conversions %>%
+    group_by(channel, YOUR_VARIABLE) %>%
+    count()
+
+# D
+lta %>%
+    ggplot(aes(x = YOUR_VARIABLE, y = YOUR_VARIABLE)) +
+    geom_bar(stat = "identity") + 
+    theme_bw()
+
+# --- Task 5: Using a Package--- # 
+# A
+# Convert data structure to what ChannelAttribution package needs
+paths_data <-  
+    df %>% 
+    group_by(cookie) %>% 
+    mutate(path = paste(channel, collapse = " > ")) %>%
+    mutate(converted = max(conversion)) %>%
+    ungroup() %>%
+    group_by(cookie, path) %>% 
+    summarize(conversion_value = sum(conversion_value),
+              converted = min(converted)
+              ) %>%
+    ungroup()
+        
+# B
+# Estimate heuristic models with the 'ChannelAttribution' package
+heuristic_models2 <- 
+    heuristic_models(
+        paths_data, 
+        var_path = "path", 
+        var_conv = "converted",
+        var_value = "conversion_value", 
+        sep = ">")
+
+print(heuristic_models)
+
+# C
+# Markov Model
+markov_model <- 
+    markov_model(
+        paths_data, 
+        var_path = "path", 
+        var_conv = "converted",
+        var_value = "conversion_value", 
+        sep = ">",
+        order = 1,
+        seed = 1234567890
+        )
+
+print(markov_model)
+
+# --- Task 6: Shapley Values --- # 
+source("compute_shapley_values.R")
+# this may take a min or two to run
+# ignore any text printed to screen
+shapley_conversions <- shapley_attribution(df)
+
+print(shapley_conversions)
