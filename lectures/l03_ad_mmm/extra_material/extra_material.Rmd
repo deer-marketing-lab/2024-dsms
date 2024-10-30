@@ -1,0 +1,262 @@
+---
+# Mixed Models: General Case 
+
+Consider the Linear Regression with $m$ marketing activities and $i$ regions:
+
+\begin{equation}
+Y_{it} = \beta_0 + \sum_{j=0}^{m} \beta_{j} X_{ijt} + \sum_{j=0}^{m} \beta^{(i)}_{j} X_{ijt}  + \varepsilon_{it}
+\end{equation}
+
+where: 
+
+* $t$ is a unit of time (eg. week, month, etc)
+* $Y_{it}$ is the KPI of interest (eg. Sales in Chicago in March)
+* $X_j$ is the marketing spend for the $j$th marketing variable (eg. TV ads, Youtube Ads, Google Ads, etc)
+* $\beta_j$ is the average incremental effect of one unit of $X_{jt}$
+* $\beta^{(i)}_j$ is the deviation from the average incremental effect of one unit of $X_{jt}$ in region $i$
+* $\varepsilon_{it}$ is the modelling error, i.e difference between predicted and actual values of the KPI
+
+---
+class: font130
+# Interpreting Mixed Models
+
+Consider an example from the 2 marketing activity $\times$ 2 region model:
+
+* $\hat{\beta}_1 = 0.5$, $\hat{\beta}_2 = 0.75$
+* $\hat{\beta}^{\text{Chicago}}_1 = 0.5$, $\hat{\beta}^{\text{Chicago}}_2 = 0.25$
+* $\hat{\beta}^{\text{SanFran}}_1 = -0.25$, $\hat{\beta}^{\text{SanFran}}_2 = -0.5$
+
+What do these estimates mean?
+
+
+In class ...
+
+---
+# A Two Activity, Two Region Mixed Model
+
+Suppose only spend on Facedb Ads and TV Ads, KPI is Sales.
+
+Two Regions: National data, want different effects for Chicago and San Francisco.
+
+Form a regression model:
+
+\begin{align}
+\text{Sales}_{it} = \beta_0 &+ \underbrace{\beta_{1F} \text{YouTube Ad Spending}_{it} + \beta_{2F} \text{TV Ad Spending}_{it}}_{\text{Average Impacts}} \\
+                            &+ \underbrace{\beta_{1\text{Chicago}} \text{YouTube Ad Spending}_{it} + \beta_{2\text{Chicago}} \text{TV Ad Spending}_{it}}_{\text{Chicago's Deviations}} \\
+                            &+ \underbrace{\beta_{1\text{San Fran}} \text{YouTube Ad Spending}_{it} + \beta_{2\text{San Fran}} \text{TV Ad Spending}_{it}}_{San Franciso's Deviations} \\
+                            &+ \varepsilon_{it}
+\end{align}
+
+Then: 
+
+* Average Impacts: $\beta_{jF}$
+* Chicago Impacts: $\beta_{jF}$ + $\beta_{j\text{Chicago}}$
+* San Franciso Impacts: $\beta_{jF}$ + $\beta_{j\text{San Franciso}}$ 
+
+
+---
+class: inverse, center, middle
+
+# Detour: Linear Regression Modelling
+
+---
+# Example: Orange Juice
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "https://parade.com/.image/t_share/MTkwNTgwODY0NjExMTk4MDc3/is-orange-juice-good-for-you-jpg.jpg"
+knitr::include_graphics(url)
+```
+
+* Three Brands: Tropicana, Minute Maid and Dominicks 
+* 83 Chicagoland Stores 
+* Data on price, sales (quantity) and whether promoted
+* Want to know the price elasticity of demand. How does this change when on promotion?
+
+```{r, echo = FALSE, message = FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(broom)
+
+oj <- read_csv("data/oj.csv")
+```
+
+---
+# The Data: A Glimpse
+
+```{r, echo = FALSE}
+head(oj, n = 10)
+```
+
+---
+# The Juice: Price, Brand and Sales 
+
+.pull-left[
+```{r, echo = FALSE}
+oj %>%
+  ggplot() +
+  geom_boxplot(
+    aes(x = brand, y = price, fill = brand)
+  ) +
+  theme_bw()
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+oj %>%
+  ggplot() +
+  geom_point(
+    aes(x = log(sales/1e3), y = log(price), color = brand),
+    alpha = 0.5
+  ) +
+  theme_bw()
+```
+
+]
+
+.center[**Each brand occupies a well defined price range. Sales decrease with price**]
+
+---
+# Simple Linear Regression 
+
+$$Sales_i = \beta_0 + \beta_1 price_i + \varepsilon_i$$
+
+Remark: Sales in '000s.
+
+```{r, echo = FALSE}
+summary(lm(sales/1e3 ~ price, data = oj))
+```
+
+---
+# Visualizing the Regression Line
+
+```{r, echo = FALSE}
+oj %>%
+  ggplot() +
+  geom_point(
+    aes(x = log(sales/1e3), y = log(price), color = brand),
+    alpha = 0.5
+  ) +
+  geom_smooth(method = "lm",
+              aes(x = log(sales/1e3), y = log(price)),
+              color = "black",
+              alpha = 0.75
+              ) +
+  xlab("quantity") + 
+  ylab("price") +
+  theme_bw()
+```
+
+---
+class: font150
+# Simple Linear Regression: Explaining
+
+Discussion Questions:
+
+* Why is this regression line the "right" one?
+
+* Can we explain each part of the statistical output?
+
+* How to interpret the regression coefficients?
+
+* Does our regression line have any important properties?
+
+* Is price the only variable that contributes to demand? 
+
+* What are the implications of "omitted variables"?
+
+---
+# Logarithmic Transformations I
+
+$$\log(Sales)_i = \beta_0 + \beta_1 price_i + \varepsilon_i$$
+
+```{r, echo = FALSE}
+tidy(lm(log(sales) ~ price, data = oj))
+```
+
+**Coefficient Interpretation** (in general): 
+
+On average, a change in X by one unit, $\Delta X=1$, is associated with a $(\exp(\beta_1) - 1)*100$ % change in Y
+
+* Remark: for small $\beta_1$, $(\exp(\beta_1) - 1) \approx \beta_1$ so often you will see an interpretation that reads straight from $\beta_1$ 
+
+**Coefficient Interpretation** (this example): 
+
+---
+# Logarithmic Transformations II
+
+$$\log(Sales)_i = \beta_0 + \beta_1 \log(price_i) + \varepsilon_i$$
+
+```{r, echo = FALSE}
+tidy(lm(log(sales) ~ log(price), data = oj))
+```
+
+**Coefficient Interpretation** (in general): 
+
+On average, a 1% change in X is associated with a change in $\beta_1$ % change in Y 
+  * $\beta_1$ is the elasticity of Y with respect to X
+
+**Coefficient Interpretation** (this example): 
+
+---
+class: inverse, center, middle
+# Multivariable Regression 
+
+---
+# Multivariable Regression: One Control
+
+$$Sales_i = \beta_0 + \beta_1 price_i + \beta_2 \text{feat}_i + \varepsilon_i$$
+
+Remark: Sales in '000s.
+
+```{r, echo = FALSE}
+summary(lm(sales ~ price + feat, data = oj))
+```
+
+---
+class: font150
+# Multiple Linear Regression: Explaining
+
+Discussion Questions:
+
+* Can we explain each part of the statistical output?
+
+* How to interpret the regression coefficients?
+
+* Was price the only variable that contributes to demand? 
+
+* What are the implications of "omitted variables"?
+
+---
+# Multivariable Regression: One Control II
+
+$$\log(Sales)_i = \beta_0 + \beta_1 \log(price_i) + \beta_2 \text{feat}_i + \varepsilon_i$$
+
+```{r, echo = FALSE}
+summary(lm(log(sales) ~ log(price) + feat, data = oj))
+```
+
+---
+# Multivariable Regression: Many Controls
+
+$$
+\begin{aligned}
+\log(Sales)_i = \beta_0 &+ \beta_1 \log(price_i) + \beta_2 \text{feat}_i + \\ 
+                        &\beta_3 \text{Tropicana}_i  + \beta_4 \text{Minute Maid}_i + \varepsilon_i
+\end{aligned}
+$$
+
+```{r, echo = FALSE}
+summary(lm(log(sales) ~ log(price) + feat + brand, data = oj))
+```
+
+---
+class: clear
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/mainevent.gif"
+knitr::include_graphics(url)
+```
+
+
