@@ -1,0 +1,142 @@
+---
+class: inverse, center, middle
+
+# What are Search Engines? How do they Work?
+
+---
+# What are Search Engines?
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "http://acronymsandslang.com/acronym_image/2574/c2e6371f31de1b922305b7f1dea6badd.jpg"
+knitr::include_graphics(url)
+```
+
+Source: [Acronyms & Slang](http://acronymsandslang.com)
+
+
+---
+# What are Search Engines?
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "https://www.reliablesoft.net/wp-content/uploads/2016/12/top-search-engines-oct-2020.png"
+knitr::include_graphics(url)
+```
+
+Source: [ReliableSoft](https://www.reliablesoft.net/)
+
+---
+# How Do They Work? 
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "https://mangools.com/blog/wp-content/uploads/2020/10/how-search-engines-work.png"
+knitr::include_graphics(url)
+```
+
+Source: [Mangools](https://mangools.com)
+
+---
+class: font150
+# Crawling 
+
+**Crawling** is the discovery process in which search engines send out a team of robots (known as crawlers or spiders) to find new and updated content
+
+* Fetches a few webpages, follows the links
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/crawling.png"
+knitr::include_graphics(url)
+```
+
+Source: [Moz](https://moz.com/)
+
+
+---
+class: font140
+# Indexing 
+
+**Indexing**: search engines collect, analyze and store everything found via crawlers into data structures 
+
+* Imagine a library of books, but containing webpages instead of books!
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "https://storage.googleapis.com/algodailyrandomassets/curriculum/systems-design/search-engines/indexing.png"
+knitr::include_graphics(url)
+```
+
+Source: [Algo Daily](https://algodaily.com/lessons/how-do-search-engines-work/indexing)
+
+
+---
+class: font150
+# Ranking 
+
+**Ranking** happens via *search engine algorithms* 
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "https://storage.googleapis.com/algodailyrandomassets/curriculum/systems-design/search-engines/ranking.png
+"
+knitr::include_graphics(url)
+```
+
+Source: [Algo Daily](https://algodaily.com/lessons/how-do-search-engines-work/indexing)
+
+
+---
+class: font150
+# Search Engine Algorithms
+
+**Search Engine Algorithm**: evaluates intended pages and determines which should appear 
+
+What's in the algorithm? Things such as:
+
+1.  **Meaning of the query** 
+  * What the user means, what is the search intent?
+2. **Page relevance** 
+  * Does page answer search query
+3. **Content quality** 
+  * Is page an excellent soruce of information
+4. **Page usability**
+  * Technical quality of page
+
+---
+class: font150
+# Browsers vs Search Engines!
+
+Important Distiction!
+
+**Web browser**: a user friendly interface to display a webpage
+
+VERSUS
+
+**Search Engine**: An online tool available on a website that is accessed via a web browser
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "https://www.searchenginemagazine.com/wp-content/uploads/2021/03/web-browser-vs-search-engine.jpg"
+knitr::include_graphics(url)
+```
+
+Source: [Search Engine Magazine](https://www.searchenginemagazine.com/web-browser-vs-search-engine/)
+
+---
+class: inverse, center, middle
+
+# Search Engine Marketing vs Search Engine Optimization
+
+---
+# Search Engine Marketing
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="90%"}
+url <- "figs/sem_defined.png"
+knitr::include_graphics(url)
+```
+
+---
+# Search Engine Optimization 
+
+```{r, echo = FALSE, fig.align = "center", out.width="90%"}
+url <- "figs/seo_defined.png"
+knitr::include_graphics(url)
+```
