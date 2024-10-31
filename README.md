@@ -5,7 +5,7 @@
 
 ## Meta-Information
 
-* Module Maintainer: Lachlan Deer (`@lachlandeer`)
+* Course Maintainer: Lachlan Deer (`@lachlandeer`)
 * Course: [Digital and Social Media Strategies](https://uvt.osiris-student.nl/#/onderwijscatalogus/extern/cursus/?collegejaar=huidig&taal=en&cursuscode=325222-B-6)
 * Institute: Dept of Marketing, Tilburg University
 * Current Version: [2024 edition](https://github.com/deer-marketing-lab/2024-dsms)
