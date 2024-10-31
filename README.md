@@ -1,4 +1,4 @@
-# Digital and Social Media Strategies: Firm Generated Content and Viral Marketing
+# Digital and Social Media Strategies
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![lifecycle](https://img.shields.io/badge/version-2024-red.svg)]()
