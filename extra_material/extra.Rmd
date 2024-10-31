@@ -1,0 +1,529 @@
+Understanding Characteristics of Popular Streamers on Live Streaming Platforms: Evidence from Twitch.tv 
+
+* [Zhao et al (2020 )](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3388949)
+
+---
+class: inverse, center, middle
+# Characteristics of Popular Streamers
+
+---
+class: font160
+# Motivation
+
+**Strategic Question**: What are the key characteristics of popular streamers
+
+* Streamers as an insight into influencers more generally ...
+
+**Why relevant**:
+
+* *Influencer*: Can you "become" more popular?
+* *Firms*: What are characteristics of influencers that get high engagement?  
+
+**Observational Study + no "clever" empirical strategy**
+
+$\implies$ **Findings are descriptive**
+
+---
+class: font120
+# Research Hypotheses
+
+```{r, echo = FALSE, fig.align = "center", out.width="65%"}
+url <- "figs/influencer_charac_hypotheses.png"
+knitr::include_graphics(url)
+```
+
+**Affordance?** In this paper...
+
+* Profile Information & social interactivity
+
+... as **distinct from professionalism** ... 
+
+* Part of a professional team & gaming proficiency
+
+---
+class: font160
+# Data
+
+516 Twitch streamers over three weeks
+
+**Streamer Popularity** (static!): 
+
+* View count
+* Number of followers
+
+**Social Interactivity**: 
+
+* Webcam
+* Words in Transcript 
+* Links to Twitter Profile 
+
+**Personality Traits**:  
+
+* Linguistic Analyses of stream transcripts & tweets
+
+---
+# Measurement
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/influencer_charac_measurement.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font150
+# Regression
+
+Regression equation:
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/influencer_charac_regression.png"
+knitr::include_graphics(url)
+```
+
+.center[.font70[Note the lack of subscripts! Don't be **that** person!]]
+
+Remarks:
+
+* PBA: Profile Building Affordance 
+* Same regression with no. of followers as alternative outcome
+
+---
+# Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/influencer_charac_results_main.png"
+knitr::include_graphics(url)
+```
+
+**Remark**: Mind the overly causal language in the results section of the paper
+
+---
+class: font160
+# Takeaways
+
+Having:
+
+* Profile Descriptors 
+* Camera On 
+* Talking to your viewers 
+* Being a Professional 
+
+**positively associated** with being more **popular** on Twitch 
+
+**Personality Trait** results are **mixed** ... 
+
+* Openness and conscientiousness negative associated with popularity 
+* Neuroticism positively associated
+
+(**my** worries on this bit: Omitted Variables, measurement errors)
+
+---
+class: inverse, center, middle
+# What is the effect of sponsorship disclosure on influencers?
+
+---
+class: font160
+# Motivation 
+
+**Strategic Question**: How does sponsorship disclosure impact consumer evaluations of brands and influencers?
+
+* And does it differ across influencer type?
+
+**Why Relevant?**
+
+* Sponsored influencer posts used to be the "wild west" of advertising
+  * i.e. unregulated, left to consumers to discern 
+  * Unlike most advertising markets
+* Increase regulation mandated by governments ...
+* ... But actual uptake is still low
+
+**Application**: a Lab Experiment (Why?)
+
+---
+class: font140
+# Conceptual Framework
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/disclosure_conceptual.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font140
+# Experiments: An Overview
+
+**Study 1a**: Influencer Type on persuasion knowledge and trustworthiness? 
+  * What are the impacts on brand evaluation and influencer likeability?
+
+**Study 1b**: Replicates Study 1a with "more control"
+
+* Less info about influencer changing simultaneously
+* (Won't discuss this here)
+
+**Study 2**: What does **disclosure vs non-disclosure** do? 
+
+**Study 3**: Replicates Study 2 with real influencers
+* (Won't discuss this here)
+
+---
+class: font150
+# Study 1a
+
+The Basics: 
+
+* **Fictitious** influencers 
+
+* Influencer **Types**: Nano, micro, macro, mega, nano
+
+* Industry: **Food, Instagram** 
+
+* Participants: 282 Western Europeans
+
+---
+class: font130
+# Study 1a: Stimuli
+
+Varies **Profile info** across types of influencer 
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/disclosure_study_1_manip1.png"
+knitr::include_graphics(url)
+```
+
+Varies **likes** across types of influencer 
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/disclosure_study_1_manip2.png"
+knitr::include_graphics(url)
+```
+
+---
+# Study 1a: Results 
+
+```{r, echo = FALSE, fig.align = "center", out.width="55%"}
+url <- "figs/disclosure_study_1_results.png"
+knitr::include_graphics(url)
+```
+
+**Takeaways**: 
+
+* Mediation via persuasion knowledge for macro, mega, nano 
+* No Mediation via trustworthiness of the post 
+
+Persuasion Knowledge?
+
+* Consumers expected post to be sponsored
+
+$\implies$ when consumers think something is sponsored and can't be verified perceptions go down
+
+---
+class: font150
+# Study 2 
+
+**2 x 2 design**: 
+
+* Nano vs Mega 
+* Non-disclosure vs disclosure 
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "figs/disclosure_study_2_manip.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font140
+# Study 2: Results 
+
+```{r, echo = FALSE, fig.align = "center", out.width="50%"}
+url <- "figs/disclosure_study_2_results_fig.png"
+knitr::include_graphics(url)
+```
+
+* If no disclosure, when respondant thinks post is sponsored their trust in post content falls
+  * Leads to lower evals of influencer and brand (not shown)
+* **NOT** the case when sponsorship is disclosed
+
+---
+class: font160
+# Takeaways 
+
+* Revealing a post is **sponsored** makes **consumers trust the post more**, particularly **when the content is perceived to be sponsored**
+
+* ... **Prevents decrease in likeability of influencers** and **negative brand evaluations** 
+
+---
+class: font160
+# Today's Topic Coverage
+
+Does volume or sentiment of online word of mouth matter for consumers?
+
+* [Chintagunta, Gopinath & Venkataraman (2010)](https://pubsonline.informs.org/doi/pdf/10.1287/mksc.1100.0572)
+
+* *Recent Updates*: Whats new in Online Word of Mouth research?
+  * [Seiler, Yao & Zervas (2018)](https://songyao21.github.io/Research_Papers/WOM_book_chapter.pdf) 
+  * [Deer, Chintagunta & Crawford (2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4227912)
+
+  ---
+class: inverse, center, middle
+
+# Does volume or sentiment of online word of mouth matter for consumers?
+
+---
+class: font160
+# What is Word of Mouth Marketing?
+
+Consumer's interest in a company's product or service is reflected in their "daily dialogues"
+
+* Why is this *new* in "social media"?
+  * It isn't a new idea ...
+  * The "social web" with it's increasing connectivity makes it more salient
+  * ... and measurable
+
+---
+class: font160
+# Types of Word of Mouth 
+
+**Organic word of mouth**:
+
+* People become advocates for a product and have a desire to share their views.
+* **This is our focus**
+
+**Amplified word of mouth**: 
+
+* Marketers launch campaigns designed to encourage or accelerate WoM in existing or new communities.
+* We'll come back to this later in the course -- "Social Advertising"
+
+*Lurking Issue:* Online versus Offline
+
+* Distinction is always lurking in the background
+
+---
+class: font160
+# Social Media Word of Mouth Matters
+
+* Consumers now spend more than 135 mins per day on social media
+
+* Social Media fostered growing importance of WoM marketing
+
+* Chief Marketing Officers think online WoM matters
+    - ... Rationalized by consumer's trust in online info from peers (Nielsen, 2013)
+    - 64% of marketing executives believe word of mouth is the most effective form of marketing
+    - Only 6% say they have mastered it.
+
+---
+class: font160
+# Why Word of Mouth Might Matter
+
+.center[
+`r icons::fontawesome("question", style = "solid")` What reasons might word of mouth matter for consumers?
+]
+
+
+---
+class: font160
+# Why Word of Mouth Might Matter
+
+Mechanisms at play:
+
+1. Awareness
+2. Buzz
+3. Social learning
+4. Consumption complementarities
+
+Most often we see this operationalized as:
+
+* Awareness & Buzz $\rightarrow$ **volume** of tweets
+* Social learning $\rightarrow$ **sentiment** in tweet's text
+  * Sentiment often called *valence*
+* Consumption complementarities $\rightarrow$ *nothing*
+
+---
+class: font160
+# Why Should Marketers Care?
+
+- Social media can generate awareness, buzz and information diffusion that ultimately influences demand
+
+<br>
+
+- Important when:
+    1. Relying on "hyped release strategies"
+    2. Uncertainty about a product's quality
+
+<br>
+
+- Examples: movies, books, consumer electronics, video games, fashion
+
+.center[**Most relevant for new products early in release**]
+
+---
+class: font160
+# The paper...
+
+**Strategic Question**: How does volume, valence and variance of online user reviews impact product demand? 
+
+* Some definitions: 
+  * **Online Word of Mouth**: user reviews on social media 
+    * Thought of as different from star ratings 
+  * **Valence** (aka *sentiment*): how positive / negative the reviews are
+
+**Why relevant?** 
+
+* Volume vs Valence effects are widely debated
+* And (generally) hard to measure
+* Relevant for new products, experience goods
+  * Movie industry is a good laboratory for these products
+
+---
+class: font140
+# Application: The Movie Industry
+
+* Time period: November 2003 to February 2005
+
+* Movies: 148 
+
+* Yahoo! Movies discussion boards
+
+* Opening weekend box office data across DMAs
+
+* Why DMA level data important here? 
+  1. Movies weren't always released across all of US on same day
+  2. Allows different in OWoM metrics for the same movie on an "opening" weekend
+
+**Why not an experiment?** 
+
+* Experimental variation in volume and sentiment (almost) impossible
+* Paper pre-dates the experimental revolution
+
+---
+# Variable Definitions 
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/cgv_data.png"
+knitr::include_graphics(url)
+```
+
+---
+# Regression Model 
+
+**Regression Equation**: 
+
+```{r, echo = FALSE, fig.align = "center", out.width="40%"}
+url <- "figs/cgv_regression.png"
+knitr::include_graphics(url)
+```
+
+$i$ is movie, $j$ is DMA (region)
+
+**Coefficients of Interest**: $\gamma_1$, $\gamma_2$, $\gamma_3$
+
+**Bells and Whistles (in method)**: 
+
+* Endogeneity (offline vs online, omitted variables)
+* Correlation in errors across markets
+
+$\implies$ fix via Instrumental Variables + tweaks to standard error calculation you're used to
+
+---
+# Main Results 
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/cgv_main.png"
+knitr::include_graphics(url)
+```
+
+**Valence is** statistically significant 
+
+**Volume is not**
+
+---
+# Comparison to National Aggregation 
+
+.center[**National Demand is what people "usually" do**]
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/cgv_national.png"
+knitr::include_graphics(url)
+```
+
+**Valence is not** statistically significant , **Volume is**
+
+
+---
+class: font150
+# Whats Causing this Difference? 
+
+When we have **sequential** release of products
+
+* Sentiment is "moving around more" than volume 
+  * Why?
+  * Pre-release volume >> post-release volume 
+  * Can learn quality from consumers who have seen movie
+* And sequential release was/is a strategic decision
+  * In part due because firms want to leverage social learning
+
+$\implies$ likely that we see sentiment effects
+
+When we have **simultaneous** national release of products
+
+* More variation in volume than sentiment 
+* And sentiment is *noisy* for all products in the opening week
+
+$\implies$ likely that we see volume effects
+
+.font70[These thoughts are speculative on my part]
+
+---
+class: font160
+# Takeaways from the paper
+
+* Emphasizes the role of **valence** / **sentiment** of online reviews in influencing new product demand in experience goods markets 
+  * In **contrast** to **volume**
+  * Which is what previous studies emphasized
+
+* Marketers should find ways to spread **positive** online WoM to boost demand 
+
+---
+class: font150
+# Recent Developments I 
+
+.center[
+**Can we get experimental variation in volume and sentiment?**
+]
+
+* Maybe if there's a "Natural Experiment"
+* Studied by [Seiler, Yao & Wang (2018)](https://pubsonline.informs.org/doi/abs/10.1287/mksc.2017.1045) 
+
+**Setting**: Shutdown of Sina Weibo in mainland China & but not HK
+* Industry: Existing TV shows 
+
+**Findings**: 
+
+* Volume not sentiment is significant
+* Small elasticities, approx 0.02 
+* Mechanism at play is consumption complementarities 
+
+---
+class: font140
+# Recent Developments II
+
+.center[
+**How far to "believable" numbers can get get without experimental variation?** 
+
+**Can we reconcile the volume vs sentiment debate?**
+]
+
+* If we can **control** for (almost) all the omitted variables
+* Studied by [Deer, Crawford, Chintagunta (2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4227912) 
+
+**Setting**: US Movie Industry & Twitter WoM
+
+**Findings**: 
+
+* Distinguish Pre- vs Post- release volume and sentiment
+* Volume **and** sentiment significant
+* Small-ish volume elasticities, larger sentiment elasticities 
+* Differs across **types** of movies
+  *  Buzz: Franchise movies, 
+  *  Awareness: (expected) mid-tier movies, 
+  *  Social learning: (expected) small movies
