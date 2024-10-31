@@ -1,0 +1,54 @@
+# Welfare Effects of Social Media
+
+---
+# Slide Title 
+
+**Strategic Question:** What is the welfare impact of social media on users? 
+
+Why Relevant?
+
+* Social Media Platforms: Is my platform good for society? 
+* Others: How should I "plug into" social media given the answer?
+
+**Data driven approach**
+
+* Field Experiment 
+* Willingness to Accept account deactivation, then decativate some users 
+* Measure subjective wellbeing
+
+---
+# Experiment Design
+
+(Plot)
+
+---
+# Experiment Design 
+
+**Recruitment**: Facebook ad
+
+* Attempt to be representative of Facebook user demographics
+
+**Baseline**: Consent, User Info, informed about potential shutdown 
+
+* 3,910 compeletion, dropped 1,013
+
+**Midline**: Deactivate for 24hr, Ask WTA to stay deactivated for 4 weeks 
+
+**Randomization** Use WTA to randomize into when and how long to deactivate 
+
+**Outcome Variables**: Time Use, Subjective Wellbeing 
+
+* Also some on news & politics which we'll ignore 
+
+---
+# Substitutes for Facebook 
+
+FIG 2 
+
+---
+# Subjective Wellbeing 
+
+FIG 5
+
+---
+# Takeaways 
