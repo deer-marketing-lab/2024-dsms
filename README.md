@@ -14,7 +14,7 @@
 
 Repository for all student facing material as part of the Digital and Social Media Strategies Course taught at Tilburg University in 2024/25.
 
-The syllabus for the course is available [here]()
+The syllabus for the course is available [here](https://github.com/deer-marketing-lab/2024-dsms/blob/main/syllabus/2024_dsms_syllabus.pdf)
 
 In the 7 week Block course we cover the following material in lectures:
 
