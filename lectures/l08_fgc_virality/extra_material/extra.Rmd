@@ -1,0 +1,226 @@
+Detecting, Preventing, and Mitigating Online Firestorms in Brand Communities 
+
+* [Herhausen, Ludwig, Grewal, Wulf & Schoegel (2019)](https://journals.sagepub.com/doi/10.1177/0022242918822300)
+
+---
+class: inverse, center, middle
+
+# Online Firestorms in Brand Communities 
+
+---
+class: font160
+# Motivation 
+
+**Strategic Question**: How can a firm detect, prevent and mitigate online firestorms in brand communities
+
+* **Online Firestorm**: negative OWoM that gets substantial support from other customers quickly
+
+
+**Why relevant?** 
+
+* 72% of firms rate preparedness for online firestorms as below average
+* Limited understanding at how to deal with negative OWoM 
+* Difficulty predicting what happens when negative OWoM propagates through a large audience
+
+---
+# Online Firestorm Erupting 
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/of_eruption.png"
+knitr::include_graphics(url)
+```
+
+---
+# Online Firestorm Prevention 
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/of_prevention.png"
+knitr::include_graphics(url)
+```
+
+---
+# Online Firestorm Mitigation
+
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/of_mitigation.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font140
+# Data 
+
+**Source**: Facebook Brand Communities for S&P 500 companies 
+
+**Date Range**: October 2011 to Jan 2016
+
+**Sample**: 472,995 negative posts across 89 online brand communities
+
+**Important Definitions**:
+
+* SST = strength of structural ties
+  * Likes + comments $\times$ Given / received in community by a poster 
+
+* LSM = linguistic similarity
+  * How similar is complaining customers language with that of the existing posts in brand community
+
+**Lurking question?** Firestorms vs Product Harm crises? 
+
+* Firestorms emerge and end usually within 24 hours
+
+---
+# The Paper in a Nutshell
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/of_paper_nutshell.png"
+knitr::include_graphics(url)
+```
+
+---
+# Predicting Firestorms
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/of_model_prediction.png"
+knitr::include_graphics(url)
+```
+
+---
+# Prevention 
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/of_model_prevention.png"
+knitr::include_graphics(url)
+```
+
+---
+# Mitigation
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/of_model_mitigation.png"
+knitr::include_graphics(url)
+```
+
+
+---
+class: font150
+# Summary 
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/of_summary.png"
+knitr::include_graphics(url)
+```
+
+Remark: Everything here is **correlation**
+
+* Don't be swayed by authors want to interpret causally 
+
+---
+class: font160
+# Motivation 
+
+**Strategic Question**: How to design ads to *seed* a viral advertising campaign
+
+Dimensions studied:
+
+* Creativity: intruguing, entertaining, gains consumer's attention 
+* Informativeness: provides needed information or essential facts
+
+**Why relevant?** 
+
+* Dimensions under a firm's control 
+* At the expense of advertising effectiveness 
+
+
+---
+# Conceptual Framework 
+
+<br>
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/propogate_conceptual.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font150
+# Flow of the Paper: Lab Studies 
+
+Multiple studies $\rightarrow$ "Typical" consumer behaviour style paper
+
+**Study 1** Field data: Views of YouTube ads
+
+* Do certain types of ads generate more virality in "real" data?
+
+**Study 2**: Real Ads *and* circulation intentions 
+
+* For propagators vs non-propagators 
+
+**Study 3**: Vary creativity and informativeness of a focal ad
+
+* Control the ad content
+* Remove omitted variable bias driven by product category of the real ads
+
+---
+class: font160
+# Study 1: Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/propogate_results.png"
+knitr::include_graphics(url)
+```
+
+* Creativity and informativeness positively correlated with views
+* Propagators too 
+  * Measured by number of comments ... so take this with a grain of salt
+
+
+---
+class: font140
+# Study 2: Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/propogate_study2_results.png"
+knitr::include_graphics(url)
+```
+
+* Higher creativity associated with higher intent to disseminate
+* Propogators even more likely when highly informative and highly creative
+
+*Remark*: Propagator defined as "having friends" and "talking to them a lot"
+
+---
+# Study 3: Manipulating the Ad Content
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "figs/propogate_study3_stimuli.png"
+knitr::include_graphics(url)
+```
+
+---
+class: font140
+# Study 3: Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/propogate_results.png"
+knitr::include_graphics(url)
+```
+
+Dissemination: 
+
+* High creativity positively associated with intent to share
+* High creativity and highly informative even more so for propagators 
+
+Social Status elevation: (a mechanism)
+
+* Propagators do this to elevate their social status
+
+---
+class: font160
+# Takeaways
+
+* Ads more likely to be shared when they are creative and informative 
+  * Even more likely for more socially connected individuals
+
+* Driven by socially connected individuals desire to elevate (perceived) social status 
